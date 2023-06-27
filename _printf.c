@@ -10,10 +10,10 @@
 
 int start_printf(const char *format, va_list args, t_buff *storage)
 {
-	int o, width, prec, tot_num = 0;
+	int o, tot_num = 0;
 	char strindex;
-	unsigned char flags, len;
 	unsigned int (*hand)(va_list, t_buff *);
+	unsigned char flag;
 
 	for (o = 0; *(format + o) != '\0'; o++)			/* iterate through string */
 	{
@@ -21,14 +21,7 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 		{
 			strindex = 0;			/* tracking the index that starts the formatting process */
 
-			/* determining width */
-/*			width = x; */
-			/* determining precision */
-/*			prec = y; */
-			/* determining flags */
-/*			flags = z; */
-			/* determining length */
-/*			len = l; */
+			/* flag = flags(*(format + o + strindex + 1)); */
 
 			hand = hand_spec(format + o + strindex + 1);
 			if (*(format + o + strindex + 1) == '\0')
@@ -43,15 +36,9 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 			}
 		}
 		tot_num += update_storage(storage, (format + o), 1);
-		if (len != 0)
-			o++;
-		else
-			o += 0;
 	}
 	return (tot_num);
 }
-
-
 
 /**
  * _printf - prints to standard output
