@@ -55,6 +55,7 @@ typedef struct specifiers
 int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
+int flags(char s, flag_t *g);
 
 /* handle conversion specifications in format string */
 unsigned int (*hand_spec(const char *format))(va_list, t_buff *);
