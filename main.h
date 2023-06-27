@@ -22,6 +22,25 @@ typedef struct buffsize
 } t_buff;
 
 /**
+ * struct flag - a struct containing flags
+ * to be used in the _printf function
+ * @plus: flag for '+'
+ * @space: flag for ' '
+ * @hash: flag for '#'
+ * @zero: flag for '0'
+ * @minus: flag for '-'
+*/
+
+typedef struct flag
+{
+	int plus;
+	int space;
+	int hash;
+	int zero;
+	int minus;
+} flag_t;
+
+/**
  * struct specifiers - holds format specifier letters and conversion formulas
  * @specifiers: an array of characters (holding the letter correspondants)
  * @convertor: pointer to a conversion formula matching the specifier
