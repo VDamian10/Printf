@@ -31,6 +31,7 @@ typedef struct buffsize
  * @minus: flag for '-'
 */
 
+/*
 typedef struct flag
 {
 	int plus;
@@ -39,6 +40,7 @@ typedef struct flag
 	int zero;
 	int minus;
 } flag_t;
+*/
 
 /**
  * struct specifiers - holds format specifier letters and conversion formulas
@@ -55,7 +57,10 @@ typedef struct specifiers
 int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
+
+/*
 int flags(char s, flag_t *g);
+*/
 
 /* handle conversion specifications in format string */
 unsigned int (*hand_spec(const char *format))(va_list, t_buff *);
@@ -79,5 +84,6 @@ unsigned int replace_u(va_list, t_buff *storage);
 unsigned int replace_r(va_list, t_buff *storage);
 unsigned int replace_R(va_list, t_buff *storage);
 unsigned int replace_b(va_list, t_buff *storage);
+unsigned char flags(const char *s);
 
 #endif
