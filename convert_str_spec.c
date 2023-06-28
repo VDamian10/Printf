@@ -7,6 +7,7 @@
  * Return: byte number stored
 */
 
-unsigned int convert_s(va_list args, t_buff *storage)
+/*unsigned int convert_s(va_list args, t_buff *storage)
 {
 }
+*/
