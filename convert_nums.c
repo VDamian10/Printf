@@ -88,7 +88,7 @@ unsigned int replace_u(va_list args, t_buff *storage, unsigned char flag)
 	unsigned int num = va_arg(args, int);
 	int res = count_digit_base(num, 10);
 
-    (void)flag;
+	(void)flag;
 
 	if (num == 0)
 		res++;

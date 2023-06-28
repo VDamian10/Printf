@@ -66,6 +66,7 @@ typedef struct specifiers
 int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
+int _putchar(t_buff *storage, char c);
 
 /*
 int flags(char s, flag_t *g);

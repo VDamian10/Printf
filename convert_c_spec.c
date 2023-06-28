@@ -34,7 +34,7 @@ unsigned int replace_percentage(va_list args, t_buff *storage, unsigned char fla
 	unsigned int byte_num = 0;
 
 	(void)flag;
-    (void)args;
+	(void)args;
 
 	byte_num += update_storage(storage, &percentage, 1);
 	return (byte_num);

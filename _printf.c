@@ -54,8 +54,13 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 				tot_num += hand(args, storage, flag);
 			}
 		}
-		tot_num += update_storage(storage, (format + o), 1);
+		else
+		{
+			_putchar(storage, format[o]);
+			tot_num++;
+		}
 	}
+
 	return (tot_num);
 }
 
@@ -86,6 +91,11 @@ int _printf(const char *format, ...)
 	num = start_printf(format, args, storage);		/* begin operation on format */
 
 	va_end(args);
+
+	write(1, storage->start, storage->length);
+
+	free(storage->start);
+	free(storage);
 
 	return (num);
 }
