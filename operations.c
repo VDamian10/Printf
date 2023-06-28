@@ -6,7 +6,7 @@
  * Return: a pointer to a function or NULL
 */
 
-unsigned int (*hand_spec(const char *letter)) (va_list, t_buff *, unsigned char)
+unsigned int (*hand_spec(const char *letter)) (va_list, t_buff *, const char *, unsigned char)
 {
 	int o;
 
