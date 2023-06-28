@@ -47,6 +47,11 @@ int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
 int start_printf(const char *format, va_list args, t_buff *storage);
+int _putchar(t_buff *storage, char c);
+
+/*
+int flags(char s, flag_t *g);
+*/
 
 /* handle conversion specifications in format string */
 unsigned int (*hand_spec(const char *format))(va_list, t_buff *, const char *, unsigned char);
