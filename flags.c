@@ -2,36 +2,32 @@
 
 /**
  * flags - calls or turns on flags for _printf
- * @s: char that holds the flag specifier
- * @g: pointer to the struct flag
+ * @format: format specifier for a particular conversion flag
  *
  * Return: 1 if the flag is called, 0 otherwise
 */
 
-int flags(char s, flag_t *g)
+unsigned char flags(const char *format)
 {
-	int i = 1;
+	unsigned char flag = 0;
 
-	switch (s)
+	while (*format)
 	{
-		case '+':
-			g->plus = 1;
+		if (*format == ' ')
+			flag |= FLAG_SPACE;
+		else if (*format == '+')
+			flag |= FLAG_PLUS;
+		else if (*format == '-')
+			flag |= FLAG_MINUS;
+		else if (*format == '0')
+			flag |= FLAG_ZERO;
+		else if (*format == '#')
+			flag |= FLAG_HASH;
+		else
 			break;
-		case '-':
-			g->minus = 1;
-			break;
-		case '0':
-			g->zero = 1;
-			break;
-		case '#':
-			g->hash = 1;
-			break;
-		case ' ':
-			g->space = 1;
-			break;
-        default:
-            i = 0;
-            break;
+
+		format++;
 	}
-	return (i);
+
+	return flag;
 }
