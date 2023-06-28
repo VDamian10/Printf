@@ -54,11 +54,12 @@ unsigned int count_digit_base(unsigned int num, int base)
  * replace_b - replaces 'b' specifier with binary value
  * @args: list of arguments
  * @storage: buffer
+ * @format: string to be formatted
  * @flag: flag formatter
  * Return: number of bytes stored
 */
 
-unsigned int replace_b(va_list args, t_buff *storage, unsigned char flag)
+unsigned int replace_b(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
 	unsigned int num = va_arg(args, unsigned int);
 	char binary[MAX_BINARY_DIGITS + 1];
@@ -66,6 +67,7 @@ unsigned int replace_b(va_list args, t_buff *storage, unsigned char flag)
 	int i = 0, j, k;
 
 	(void)flag;
+	(void)format;
 
 	if (num == 0) {
 		binary[i++] = '0';
@@ -95,11 +97,12 @@ unsigned int replace_b(va_list args, t_buff *storage, unsigned char flag)
  * replace_o - replaces 'o' specifier with octal value
  * @args: list of arguments
  * @storage: buffer
+ * @format: string to be formatted
  * @flag: flag formatter
  * Return: number of bytes stored
 */
 
-unsigned int replace_o(va_list args, t_buff *storage, unsigned char flag)
+unsigned int replace_o(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
 	unsigned int num = va_arg(args, unsigned int);
 	char octal[MAX_OCTAL_DIGITS + 1];
@@ -107,6 +110,7 @@ unsigned int replace_o(va_list args, t_buff *storage, unsigned char flag)
 	int i = 0, j, k;
 
 	(void)flag;
+	(void)format;
 
 	if (num == 0) {
 		octal[i++] = '0';

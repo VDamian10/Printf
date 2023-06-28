@@ -30,26 +30,6 @@ typedef struct buffsize
 	unsigned int length;
 } t_buff;
 
-/**
- * struct flag - a struct containing flags
- * to be used in the _printf function
- * @plus: flag for '+'
- * @space: flag for ' '
- * @hash: flag for '#'
- * @zero: flag for '0'
- * @minus: flag for '-'
-*/
-
-/*
-typedef struct flag
-{
-	int plus;
-	int space;
-	int hash;
-	int zero;
-	int minus;
-} flag_t;
-*/
 
 /**
  * struct specifiers - holds format specifier letters and conversion formulas
@@ -60,12 +40,13 @@ typedef struct flag
 typedef struct specifiers
 {
 	char *specifiers;
-	unsigned int (*replacer)(va_list, t_buff *, unsigned char);
+	unsigned int (*replacer)(va_list, t_buff *, const char *, unsigned char);
 } spec_s;
 
 int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
+int start_printf(const char *format, va_list args, t_buff *storage);
 int _putchar(t_buff *storage, char c);
 
 /*
@@ -73,27 +54,27 @@ int flags(char s, flag_t *g);
 */
 
 /* handle conversion specifications in format string */
-unsigned int (*hand_spec(const char *format))(va_list, t_buff *, unsigned char);
+unsigned int (*hand_spec(const char *format))(va_list, t_buff *, const char *, unsigned char);
 
 unsigned int update_storage(t_buff *, const char *str, unsigned int x);
 t_buff *start_buff(void);
 
 /* conversion specification replacer functions */
-unsigned int replace_di(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_c(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_s(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_p(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_f(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_e(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_E(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_o(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_x(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_X(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_percentage(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_u(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_r(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_R(va_list, t_buff *storage, unsigned char flag);
-unsigned int replace_b(va_list, t_buff *storage, unsigned char flag);
+unsigned int replace_di(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_c(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_s(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_p(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_f(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_e(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_E(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_o(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_x(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_X(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_percentage(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_u(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_r(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_R(va_list, t_buff *storage, const char *, unsigned char flag);
+unsigned int replace_b(va_list, t_buff *storage, const char *, unsigned char flag);
 unsigned char flags(const char *format);
 
 void print_number_to_storage(int n, t_buff *storage);

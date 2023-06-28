@@ -11,26 +11,16 @@
 int start_printf(const char *format, va_list args, t_buff *storage)
 {
 	int o, tot_num = 0;
-	int strindex;
+	char strindex;
+	unsigned int (*hand)(va_list, t_buff *, const char *, unsigned char);
 	unsigned char flag;
-	unsigned int (*hand)(va_list, t_buff *, unsigned char);
 
-	/*int width = 0;*/
-	/*int prec = 0;*/
-	/*unsigned char len = 0;*/
-
-	for (o = 0; *(format + o) != '\0'; o++)			/* iterate through string */
+	for (o = 0; format[o] != '\0'; o++)			/* iterate through string */
 	{
-		if (*(format + o) == '%')			/* beginning of format specifier */
+		if (format[o] == '%')			/* beginning of format specifier */
 		{
 			strindex = 0;			/* tracking the index that starts the formatting process */
 
-			/* determining width */
-/*			width = x; */
-			/* determining precision */
-/*			prec = y; */
-			/* determining flags */
-/*			flags = z; */
 			flag = flags(format + o + 1);
 			o++;
 
@@ -39,21 +29,22 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 				strindex++;
 				o++;
 			}
-			/* determining length */
-/*			len = l; */
 
-			hand = hand_spec(format + o + strindex);
-			if (*(format + o + strindex + 1) == '\0')
-			{
-				tot_num = -1;
-				break;
-			}
-			if (hand)
+			hand = hand_spec(format + o + strindex + 1);
+			if (hand != NULL)
 			{
 				o += strindex + 1;
-				tot_num += hand(args, storage, flag);
+				tot_num += hand(args, storage, (format + o), flag);
+				continue;
 			}
+			else
+				exit(EXIT_FAILURE);
 		}
+		tot_num += update_storage(storage, (format + o), 1);
+
+	}
+	tot_num += write(1, storage->buffer, storage->length);
+
 		else
 		{
 			_putchar(storage, format[o]);
@@ -65,7 +56,6 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 }
 
 
-
 /**
  * _printf - prints to standard output
  * @format: string to be printed
@@ -74,7 +64,7 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 
 int _printf(const char *format, ...)
 {
-	t_buff *storage;			/* decalre a buffer to store the string */
+	t_buff *storage;			/* declare a buffer to store the string */
 	va_list args;
 	int num;
 
@@ -88,8 +78,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	num = start_printf(format, args, storage);		/* begin operation on format */
-
+	num = start_printf(format, args, storage);	/* begin operation on format */
 	va_end(args);
 
 	write(1, storage->start, storage->length);

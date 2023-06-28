@@ -38,19 +38,20 @@ t_buff *start_buff(void)
 
 unsigned int update_storage(t_buff *storage, const char *str, unsigned int x)
 {
-	unsigned int o;
+	unsigned int o, w = 0;
 
 	for (o = 0; o < x; o++)
 	{
-		*(storage->buffer) = str[o];
-		storage->length += 1;
-
 		if (storage->length == 1024)
 		{
-			write(1, storage->start, storage->length);
-			storage->buffer = storage->start;
+			w += write(1, storage->buffer, storage->length);
 			storage->length = 0;
 		}
+
+		storage->buffer[storage->length] = str[o];
+		storage->length += 1;
+	}
+
 		else
 			(storage->buffer)++;
 	}
