@@ -61,24 +61,42 @@ unsigned int count_digit_base(unsigned int num, int base)
 
 unsigned int replace_b(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	char binary[MAX_BINARY_DIGITS + 1];
+	unsigned int count, num = va_arg(args, unsigned int);
+	char *binary;
 	char temp;
 	int i = 0, j, k;
+
 
 	(void)flag;
 	(void)format;
 
-	if (num == 0) {
-		binary[i++] = '0';
-	} else {
+	if (num == 0)
+	{
+		binary = malloc(sizeof(char) * 2);
+		
+		if (!binary)
+			return (0);
+		
+		binary[0] = '0';
+		binary[1] = '\0';
+
+	} 
+	else
+	{
+		count = count_digit_base(num, 2);
+		
+		binary = malloc(sizeof(char) * (count + 1));
+		
+		if (!binary)
+			return (0);
+		
 		while (num != 0) {
 			binary[i++] = (num % 2) + '0';
 			num /= 2;
 		}
-	}
 
-	binary[i] = '\0';
+		binary[i] = '\0';
+	}
 
 	j = 0;
 	k = i - 1;

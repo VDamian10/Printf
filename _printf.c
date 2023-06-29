@@ -11,34 +11,30 @@
 int start_printf(const char *format, va_list args, t_buff *storage)
 {
 	int o, tot_num = 0;
-	char strindex;
 	unsigned int (*hand)(va_list, t_buff *, const char *, unsigned char);
 	unsigned char flag;
 
 	for (o = 0; format[o] != '\0'; o++)			/* iterate through string */
 	{
+
 		if (format[o] == '%')			/* beginning of format specifier */
 		{
-			strindex = 0;			/* tracking the index that starts the formatting process */
-
 			flag = flags(format + o + 1);
-			o++;
-
-			while (format[o] == '-' || format[o] == '+' || format[o] == ' ' || format[o] == '0' || format[o] == '#')
-			{
-				strindex++;
+			if (flag != 0)
 				o++;
-			}
 
-			hand = hand_spec(format + o + strindex + 1);
+			hand = hand_spec(format + o + 1);
 			if (hand != NULL)
 			{
-				o += strindex + 1;
+				o++;
 				tot_num += hand(args, storage, (format + o), flag);
 				continue;
 			}
 			else
-				exit(EXIT_FAILURE);
+			{
+				tot_num = -1;
+				break;
+			}
 		}
 		tot_num += update_storage(storage, (format + o), 1);
 

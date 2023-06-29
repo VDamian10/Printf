@@ -10,6 +10,13 @@ void print_number_to_storage(int n, t_buff *storage)
 	unsigned int n1;
 	char digit;
 
+	if (n == 0)
+	{
+		digit = '0';
+		update_storage(storage, &digit, 1);
+		return;
+	}
+
 	if (n < 0)
 	{
 		update_storage(storage, "-", 1);

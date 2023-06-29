@@ -27,6 +27,7 @@ typedef struct buffsize
 {
 	char *buffer;
 	char *start;
+	unsigned char flag;
 	unsigned int length;
 } t_buff;
 

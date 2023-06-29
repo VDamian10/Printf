@@ -18,10 +18,18 @@ unsigned int (*hand_spec(const char *letter)) (va_list, t_buff *, const char *, 
 		{"%", replace_percentage},
 		{"u", replace_u},
 		{"b", replace_b},
+		{"x", replace_x},
+		{"X", replace_X},
+		{"e", replace_e},
+		{"E", replace_E},
+		{"s", replace_s},
+		{"p", replace_p},
+		{"r", replace_r},
+		{"R", replace_R},
 		{0, NULL}
 	};
 
-	for (o = 0; convert_specs[o].replacer; o++)
+	for (o = 0; convert_specs[o].specifiers; o++)
 	{
 		if (*(convert_specs[o].specifiers) == *letter)
 		{
