@@ -38,20 +38,19 @@ t_buff *start_buff(void)
 
 unsigned int update_storage(t_buff *storage, const char *str, unsigned int x)
 {
-	unsigned int o, w = 0;
+	unsigned int o;
 
-	for (o = 0; o < x; o++)
+	for (o = 0; o < x && str[o] != '\0'; o++)
 	{
+		*(storage->buffer) = str[o];
+		storage->length += 1;
+
 		if (storage->length == 1024)
 		{
-			w += write(1, storage->buffer, storage->length);
+			write(1, storage->start, storage->length);
+			storage->buffer = storage->start;
 			storage->length = 0;
 		}
-
-		storage->buffer[storage->length] = str[o];
-		storage->length += 1;
-	}
-
 		else
 			(storage->buffer)++;
 	}
@@ -68,6 +67,7 @@ unsigned int update_storage(t_buff *storage, const char *str, unsigned int x)
 
 /**
  * _putchar - writes a character to stdout
+ * @storage: pointer to buffer struct
  * @c: the character to be written
  * Return: On success, returns the character written as an unsigned char
  *         cast to an int. On error, returns -1.
@@ -78,7 +78,7 @@ int _putchar(t_buff *storage, char c)
 	{
 		storage = start_buff();
 		if (!storage)
-			return -1;
+			return (-1);
 	}
 
 	if (storage->length == 1024 - 1)
