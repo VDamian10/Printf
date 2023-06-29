@@ -28,6 +28,7 @@ typedef struct buffsize
 {
 	char *buffer;
 	char *start;
+	unsigned char flag;
 	unsigned int length;
 } t_buff;
 
@@ -46,9 +47,7 @@ typedef struct specifiers
 int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
-int _putchar(t_buff *storage, char c);
-
-/*int flags(char s, flag_t *g);*/
+int start_printf(const char *format, va_list args, t_buff *storage);
 
 /* handle conversion specifications in format string */
 unsigned int (*hand_spec(const char *))(va_list, t_buff *, unsigned char);

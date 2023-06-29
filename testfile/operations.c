@@ -2,11 +2,11 @@
 
 /**
  * hand_spec - handles conversion specifiers in order to format a string
- * @f: identified specifier from input string
+ * @letter: identified specifier from input string
  * Return: a pointer to a function or NULL
 */
 
-unsigned int (*hand_spec(const char *f))(va_list, t_buff *, unsigned char)
+unsigned int (*hand_spec(const char *letter)) (va_list, t_buff *, const char *, unsigned char)
 {
 	int o;
 
@@ -15,7 +15,7 @@ unsigned int (*hand_spec(const char *f))(va_list, t_buff *, unsigned char)
 		{"i", replace_di},
 		{"c", replace_c},
 		{"o", replace_o},
-		{"%", replace_perc},
+		{"%", replace_percentage},
 		{"u", replace_u},
 		{"b", replace_b},
 		{"x", replace_x},
@@ -31,7 +31,7 @@ unsigned int (*hand_spec(const char *f))(va_list, t_buff *, unsigned char)
 
 	for (o = 0; convert_specs[o].specifiers; o++)
 	{
-		if (*(convert_specs[o].specifiers) == *f)
+		if (*(convert_specs[o].specifiers) == *letter)
 		{
 			return (convert_specs[o].replacer);
 		}
@@ -39,3 +39,4 @@ unsigned int (*hand_spec(const char *f))(va_list, t_buff *, unsigned char)
 
 	return (NULL);
 }
+

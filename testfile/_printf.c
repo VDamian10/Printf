@@ -66,8 +66,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	num = start_printf(format, args, storage);		/* begin operation on format */
-
+	num = start_printf(format, args, storage);	/* begin operation on format */
 	va_end(args);
 
 	return (num);
