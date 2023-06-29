@@ -10,44 +10,49 @@
 
 int start_printf(const char *format, va_list args, t_buff *storage)
 {
-	int o, tot_num = 0;
-	char strindex;
-	unsigned char flag;
-	unsigned int (*hand)(va_list, t_buff *, unsigned char);
+    int o, tot_num = 0;
+    char strindex;
+    unsigned char flag;
+    unsigned int (*hand)(va_list, t_buff *, unsigned char);
 
-	for (o = 0; *(format + o) != '\0'; o++)			/* iterate through string */
-	{
-		if (*(format + o) == '%')			/* beginning of format specifier */
-		{
-			strindex = 0;			/* tracking the index that starts the formatting process */
+    for (o = 0; *(format + o) != '\0'; o++)  /* iterate through string */
+    {
+        if (*(format + o) == '%')  /* beginning of format specifier */
+        {
+            strindex = 0;  /* tracking the index that starts the formatting process */
 
-			flag = flags(format + o + 1);
-			o++;
-			while (format[o] == '-' || format[o] == '+' || format[o] == ' '
-			|| format[o] == '0' || format[o] == '#')
-			{
-				strindex++;
+            flag = flags(format + o + 1);
+			if (flag != 0)
 				o++;
-			}
-			hand = hand_spec(format + o + strindex);
-			if (*(format + o + strindex + 1) == '\0')
-			{
-				tot_num = -1;
-				break;
-			}
-			if (hand)
-			{
-				o += strindex + 1;
-				tot_num += hand(args, storage, flag);
-			}
-		}
-		else
-		{
-			_putchar(storage, format[o]);
-			tot_num++;
-		}
-	}
-	return (tot_num);
+            /**
+             * while (format[o] == '-' || format[o] == '+' || format[o] == ' '
+             * || format[o] == '0' || format[o] == '#')
+             * {
+             *    strindex++;
+             *    o++;
+             * }
+            */
+            hand = hand_spec(format + o + strindex);
+            if (*(format + o + strindex + 1) == '\0')
+            {
+                tot_num = -1;
+                break;
+            }
+            if (hand != NULL)
+            {
+                o += strindex + 1;
+                tot_num += hand(args, storage, flag);
+            }
+        }
+        else
+        {
+            _putchar(storage, format[o]);
+            tot_num++;
+        }
+    }
+
+
+    return tot_num;
 }
 
 

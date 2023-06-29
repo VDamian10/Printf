@@ -15,7 +15,7 @@ unsigned int (*hand_spec(const char *f))(va_list, t_buff *, unsigned char)
 		{"i", replace_di},
 		{"c", replace_c},
 		{"o", replace_o},
-		{"%", replace_percentage},
+		{"%", replace_perc},
 		{"u", replace_u},
 		{"b", replace_b},
 		{0, NULL}

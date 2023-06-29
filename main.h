@@ -20,6 +20,7 @@
  * struct buffsize - holds buffer prior to final print on stdout
  * @buffer: pointer to a character array
  * @start: pointer to the start of the buffer
+ * @flag: flag
  * @length: length of the string
 */
 
