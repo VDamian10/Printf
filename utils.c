@@ -51,14 +51,11 @@ unsigned int update_storage(t_buff *storage, const char *str, unsigned int x)
 			storage->buffer = storage->start;
 			storage->length = 0;
 		}
-<<<<<<< HEAD
-
 		storage->buffer[storage->length] = str[o];
 		storage->length += 1;
 	}
 
 	return (w);
-=======
 		else
 			(storage->buffer)++;
 	}
@@ -101,5 +98,4 @@ int _putchar(t_buff *storage, char c)
 	(storage->length)++;
 
 	return ((unsigned char)c);
->>>>>>> origin/bez
 }

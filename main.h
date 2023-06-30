@@ -20,6 +20,7 @@
  * struct buffsize - holds buffer prior to final print on stdout
  * @buffer: pointer to a character array
  * @start: pointer to the start of the buffer
+ * @flag: flag
  * @length: length of the string
 */
 
@@ -46,13 +47,7 @@ typedef struct specifiers
 int main(void);
 int _printf(const char *format, ...);
 int _strlen(const char *str);
-<<<<<<< HEAD
 int start_printf(const char *format, va_list args, t_buff *storage);
-=======
-int _putchar(t_buff *storage, char c);
-
-/*int flags(char s, flag_t *g);*/
->>>>>>> origin/bez
 
 /* handle conversion specifications in format string */
 unsigned int (*hand_spec(const char *))(va_list, t_buff *, unsigned char);

@@ -71,33 +71,29 @@ unsigned int replace_b(va_list args, t_buff *storage, unsigned char flag)
 	if (num == 0)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/bez
 		binary = malloc(sizeof(char) * 2);
-		
+
 		if (!binary)
 			return (0);
-		
+
 		binary[0] = '0';
 		binary[1] = '\0';
 
-	} 
-	else
-	{
-		count = count_digit_base(num, 2);
-		
-		binary = malloc(sizeof(char) * (count + 1));
-		
-		if (!binary)
-			return (0);
-		
-		while (num != 0) {
-=======
-		binary[i++] = '0';
 	}
 	else
 	{
-		while (num != 0)
+		count = count_digit_base(num, 2);
+
+		binary = malloc(sizeof(char) * (count + 1));
+
+		if (!binary)
+			return (0);
+
+		while (num != 0) 
 		{
->>>>>>> origin/bez
 			binary[i++] = (num % 2) + '0';
 			num /= 2;
 		}
