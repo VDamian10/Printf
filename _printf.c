@@ -11,15 +11,25 @@
 int start_printf(const char *format, va_list args, t_buff *storage)
 {
 	int o, tot_num = 0;
+<<<<<<< HEAD
 	unsigned int (*hand)(va_list, t_buff *, const char *, unsigned char);
+=======
+	char strindex;
+>>>>>>> origin/bez
 	unsigned char flag;
+	unsigned int (*hand)(va_list, t_buff *, unsigned char);
 
-	for (o = 0; format[o] != '\0'; o++)			/* iterate through string */
+	for (o = 0; *(format + o) != '\0'; o++)			/* iterate through string */
 	{
+<<<<<<< HEAD
 
 		if (format[o] == '%')			/* beginning of format specifier */
+=======
+		if (*(format + o) == '%')			/* beginning of format specifier */
+>>>>>>> origin/bez
 		{
 			flag = flags(format + o + 1);
+<<<<<<< HEAD
 			if (flag != 0)
 				o++;
 
@@ -40,6 +50,33 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 
 	}
 	tot_num += write(1, storage->buffer, storage->length);
+=======
+			o++;
+			while (format[o] == '-' || format[o] == '+' || format[o] == ' '
+			|| format[o] == '0' || format[o] == '#')
+			{
+				strindex++;
+				o++;
+			}
+			hand = hand_spec(format + o + strindex);
+			if (*(format + o + strindex + 1) == '\0')
+			{
+				tot_num = -1;
+				break;
+			}
+			if (hand)
+			{
+				o += strindex + 1;
+				tot_num += hand(args, storage, flag);
+			}
+		}
+		else
+		{
+			_putchar(storage, format[o]);
+			tot_num++;
+		}
+	}
+>>>>>>> origin/bez
 	return (tot_num);
 }
 
@@ -66,7 +103,8 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	num = start_printf(format, args, storage);	/* begin operation on format */
+	num = start_printf(format, args, storage);		/* begin operation on format */
+
 	va_end(args);
 
 	return (num);
