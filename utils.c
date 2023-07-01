@@ -12,13 +12,16 @@ t_buff *start_buff(void)
 	storage = malloc(sizeof(t_buff));
 
 	if (!storage)
+	{
+		free(storage);
 		return (NULL);
+	}
 
 	storage->buffer = malloc(sizeof(char) * 1024);
 
 	if (!storage->buffer)
 	{
-		free(storage);
+		free(storage->buffer);
 		return (NULL);
 	}
 

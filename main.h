@@ -10,6 +10,9 @@
 #define MAX_BINARY_DIGITS 32
 #define MAX_OCTAL_DIGITS 12
 
+#define FLAG_UPPER  0x01
+#define FLAG_LOWER  0x02
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -77,5 +80,8 @@ void print_number_to_storage(int n, t_buff *storage);
 int count_digit(int i);
 void convert_to_base(unsigned int num, int base, char *result);
 unsigned int count_digit_base(unsigned int num, int base);
+void print_unsigned_to_storage(unsigned int num, t_buff *storage);
+void print_hex_to_storage(unsigned int num, t_buff *storage, unsigned char flags);
+unsigned int print_address_to_storage(void *ptr, t_buff *storage);
 
 #endif

@@ -106,3 +106,4 @@ unsigned int replace_R(va_list args, t_buff *storage, const char *format, unsign
 	}
 	return (w);
 }
+

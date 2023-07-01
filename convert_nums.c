@@ -1,6 +1,37 @@
 #include "main.h"
 
 /**
+ * print_unsigned_to_storage - Prints an unsigned integer to the storage buffer
+ * @num: The unsigned integer to print
+ * @storage: The storage buffer
+ *
+ * Return: void
+ */
+
+void print_unsigned_to_storage(unsigned int num, t_buff *storage)
+{
+	char buffer[21];
+	int len = 0, i;
+
+	if (num == 0)
+	{
+		buffer[len++] = '0';
+	}
+	else
+	{
+		while (num != 0)
+		{
+			buffer[len++] = (num % 10) + '0';
+			num /= 10;
+		}
+	}
+
+	for (i = len - 1; i >= 0; i--)
+		update_storage(storage, &buffer[i], 1);
+}
+
+
+/**
  * print_number_to_storage - Helper function that prints an integer to the storage.
  * @n: The integer to be printed.
  * @storage: Pointer to the buffer structure for storing the result.

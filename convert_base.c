@@ -66,7 +66,6 @@ unsigned int replace_b(va_list args, t_buff *storage, const char *format, unsign
 	char temp;
 	int i = 0, j, k;
 
-
 	(void)flag;
 	(void)format;
 
@@ -76,7 +75,6 @@ unsigned int replace_b(va_list args, t_buff *storage, const char *format, unsign
 
 		if (!binary)
 			return (0);
-
 		binary[0] = '0';
 		binary[1] = '\0';
 
@@ -84,18 +82,15 @@ unsigned int replace_b(va_list args, t_buff *storage, const char *format, unsign
 	else
 	{
 		count = count_digit_base(num, 2);
-
 		binary = malloc(sizeof(char) * (count + 1));
 
 		if (!binary)
 			return (0);
-
 		while (num != 0)
 		{
 			binary[i++] = (num % 2) + '0';
 			num /= 2;
 		}
-
 		binary[i] = '\0';
 	}
 
@@ -109,7 +104,6 @@ unsigned int replace_b(va_list args, t_buff *storage, const char *format, unsign
 		j++;
 		k--;
 	}
-
 	return (update_storage(storage, binary, i));
 }
 
@@ -133,9 +127,7 @@ unsigned int replace_o(va_list args, t_buff *storage, const char *format, unsign
 	(void)format;
 
 	if (num == 0)
-	{
 		octal[i++] = '0';
-	}
 	else
 	{
 		while (num != 0)
@@ -144,7 +136,6 @@ unsigned int replace_o(va_list args, t_buff *storage, const char *format, unsign
 			num /= 8;
 		}
 	}
-
 	octal[i] = '\0';
 
 	j = 0;
