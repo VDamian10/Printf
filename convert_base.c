@@ -11,7 +11,7 @@
 void convert_to_base(unsigned int num, int base, char *result)
 {
 	const char *digits = "0123456789ABCDEF";
-	int index = 0, digit;
+	int index = 0;
 
 	if (num == 0)
 	{
@@ -22,7 +22,7 @@ void convert_to_base(unsigned int num, int base, char *result)
 
 	while (num != 0)
 	{
-		digit = num % base;
+		int digit = num % base;
 		result[index++] = digits[digit];
 		num /= base;
 	}
@@ -42,13 +42,12 @@ void convert_to_base(unsigned int num, int base, char *result)
 unsigned int count_digit_base(unsigned int num, int base)
 {
 	unsigned int count = 0;
-
 	while (num != 0)
 	{
 		num /= base;
 		count++;
 	}
-	return (count);
+	return count;
 }
 
 /**
@@ -141,13 +140,14 @@ unsigned int replace_o(va_list args, t_buff *storage, const char *format, unsign
 
 	j = 0;
 	k = i - 1;
-	while (j < k)
-	{
+	while (j < k) {
 		temp = octal[j];
 		octal[j] = octal[k];
 		octal[k] = temp;
 		j++;
 		k--;
 	}
-	return (update_storage(storage, octal, i));
+
+	return update_storage(storage, octal, i);
 }
+

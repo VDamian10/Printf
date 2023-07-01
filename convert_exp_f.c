@@ -59,3 +59,4 @@ unsigned int replace_f(va_list args, t_buff *storage, const char *format, unsign
 
 	return (0);
 }
+

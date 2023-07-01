@@ -136,7 +136,7 @@ unsigned int replace_u(va_list args, t_buff *storage, const char *format, unsign
 	if (num == 0)
 		res++;
 
-	print_unsigned_to_storage(num, storage);
+	print_number_to_storage(num, storage);
 
 	return (res);
 }
