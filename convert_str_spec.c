@@ -89,7 +89,7 @@ unsigned int replace_R(va_list args, t_buff *storage, const char *format, unsign
 	int i;
 	unsigned int w = 0;
 
-	(void)flags;
+	(void)flag;
 	(void)format;
 
 	str = va_arg(args, char *);
