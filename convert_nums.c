@@ -32,8 +32,7 @@ void print_unsigned_to_storage(unsigned int num, t_buff *storage)
 
 
 /**
- * print_number_to_storage - Helper function that
- * prints an integer to the storage.
+ * print_number_to_storage - Helper function that prints an integer to the storage.
  * @n: The integer to be printed.
  * @storage: Pointer to the buffer structure for storing the result.
  */
@@ -93,14 +92,17 @@ int count_digit(int i)
  * replace_di - replaces 'd' or 'i' specifier with integer value
  * @args: list of arguments
  * @storage: buffer
+ * @format: formatted string
  * @flag: flag formatter
  * Return: number of bytes stored
 */
 
-unsigned int replace_di(va_list args, t_buff *storage, unsigned char flag)
+unsigned int replace_di(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
 	int num = va_arg(args, int);
 	int res = count_digit(num);
+
+	(void)format;
 
 	if ((flag & FLAG_SPACE) && !(flag & FLAG_PLUS) && num >= 0)
 		res += update_storage(storage, " ", 1);
@@ -118,16 +120,18 @@ unsigned int replace_di(va_list args, t_buff *storage, unsigned char flag)
  * replace_u - replaces 'u' specifier with unsigned integer value
  * @args: list of arguments
  * @storage: buffer
+ * @format: formatted string
  * @flag: flag formatter
  * Return: number of bytes stored
 */
 
-unsigned int replace_u(va_list args, t_buff *storage, unsigned char flag)
+unsigned int replace_u(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
 	unsigned int num = va_arg(args, int);
 	int res = count_digit_base(num, 10);
 
 	(void)flag;
+	(void)format;
 
 	if (num == 0)
 		res++;

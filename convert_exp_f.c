@@ -32,12 +32,12 @@ unsigned int replace_e(va_list args, t_buff *storage, const char *format, unsign
 unsigned int replace_E(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
 
-    (void)format;
-    (void)args;
-    (void)storage;
+	(void)format;
+	(void)args;
+	(void)storage;
 	(void)flag;
 
-    return (0);
+	return (0);
 }
 
 /**
@@ -52,10 +52,10 @@ unsigned int replace_E(va_list args, t_buff *storage, const char *format, unsign
 unsigned int replace_f(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
 
-    (void)format;
-    (void)args;
-    (void)storage;
+	(void)format;
+	(void)args;
+	(void)storage;
 	(void)flag;
 
-    return (0);
+	return (0);
 }
