@@ -16,6 +16,7 @@ int start_printf(const char *format, va_list args, t_buff *storage)
 
 	for (o = 0; format[o] != '\0'; o++)			/* iterate through string */
 	{
+
 		if (format[o] == '%')			/* beginning of format specifier */
 		{
 			flag = flags(format + o + 1);
@@ -65,8 +66,7 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	num = start_printf(format, args, storage);		/* begin operation on format */
-
+	num = start_printf(format, args, storage);	/* begin operation on format */
 	va_end(args);
 
 	return (num);
