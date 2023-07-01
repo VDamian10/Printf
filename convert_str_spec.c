@@ -82,15 +82,14 @@ unsigned int replace_r(va_list args, t_buff *storage, const char *format, unsign
 
 unsigned int replace_R(va_list args, t_buff *storage, const char *format, unsigned char flag)
 {
-
 	char *alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	char *rotstr = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 	char *str, *null = "null";
 	int i;
 	unsigned int w = 0;
 
-	(void)flag;
 	(void)format;
+	(void)flag;
 
 	str = va_arg(args, char *);
 	if (!str)
