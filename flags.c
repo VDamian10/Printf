@@ -29,5 +29,5 @@ unsigned char flags(const char *format)
 		format++;
 	}
 
-	return flag;
+	return (flag);
 }
